@@ -26,6 +26,10 @@ func (s *server) serveHTTP(w http.ResponseWriter, r *http.Request) {
 	logRequestMiddleware(s.router.ServeHTTP).ServeHTTP(w, r)
 }
 
+func (s *server) decode(w http.ResponseWriter, r *http.Request, v interface{}) error {
+	return json.NewDecoder(r.Body).Decode(v)
+}
+
 func (s *server) respond(w http.ResponseWriter, _ *http.Request, data interface{}, status int) {
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(status)
