@@ -16,6 +16,16 @@ type dbStore struct {
 	db *sqlx.DB
 }
 
+var schema = `
+CREATE TABLE IF NOT EXISTS movie (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	title TEXT,
+	release_date TEXT,
+	duration INTEGER,
+	trailer_url TEXT
+)
+`
+
 func (store *dbStore) Open() error {
 	db, err := sqlx.Connect("sqlite3", "goflix.db")
 
@@ -24,6 +34,7 @@ func (store *dbStore) Open() error {
 	}
 
 	log.Println("Connected to DB")
+	db.MustExec(schema)
 	store.db = db
 	return nil
 }
