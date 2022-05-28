@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 type Movie struct {
-	ID          int64  `bd:"id"`
-	Title       string `bd:"title"`
-	ReleaseDate string `bd:"releaase_date"`
-	Duration    int    `bd:"duration"`
-	TrailerURL  string `bd:"trailer_url"`
+	ID          int64  `db:"id"`
+	Title       string `db:"title"`
+	ReleaseDate string `db:"release_date"`
+	Duration    int    `db:"duration"`
+	TrailerURL  string `db:"trailer_url"`
 }
 
 func (m Movie) String() string {
