@@ -11,6 +11,6 @@ type Movie struct {
 }
 
 func (m Movie) String() string {
-	return fmt.Sprintf("id=%v, title=%v, releaseDate=%v, duration=%v, trailer=%v",
+	return fmt.Sprintf("id=%v, title=%v, releaseDate=%v, duration=%v, trailerURL=%v",
 		m.ID, m.Title, m.ReleaseDate, m.Duration, m.TrailerURL)
 }

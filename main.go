@@ -8,30 +8,29 @@ import (
 )
 
 func main() {
-	fmt.Println("GoFlix")
 
 	if err := run(); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		os.Exit(1)
 	}
-
 }
 
 func run() error {
 	srv := newServer()
 
+	// Database
 	srv.store = &dbStore{}
-
 	err := srv.store.Open()
 	if err != nil {
 		return err
 	}
-
 	defer srv.store.Close()
 
+	srv.store.GetMovies()
+
 	http.HandleFunc("/", srv.serveHTTP)
-	log.Printf("Serving HTTP on port 8000")
-	err = http.ListenAndServe(":8000", nil)
+	log.Printf("Serving on port 8080")
+	err = http.ListenAndServe(":8080", nil)
 	if err != nil {
 		return err
 	}
