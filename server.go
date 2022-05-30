@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const JWT_APP_KEY = "training.go"
+
 type server struct {
 	router *mux.Router
 	store  Store
